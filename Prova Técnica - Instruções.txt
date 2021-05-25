@@ -1,0 +1,27 @@
+PROVA TÉCNICA PARA DESENVOLVEDOR - SEIDOR
+
+SUAS TAREFAS:
+1) Criar uma API RESTful (com formato JSON) que disponibilize os seguintes serviços baseados no arquivo "Base de Dados - Funcionários.txt":
+      1. Serviço que localiza/retorna funcionários por NOME;
+      2. Serviço que localiza/retorna funcionários por CPF;
+      3. Serviço que localiza/retorna funcionários por CARGO;
+      4. Serviço que localiza/retorna funcionários por DATA DE CADASTRO;
+      5. Serviço que localiza/retorna funcionários agrupados por UF DE NASCIMENTO, de forma quantitativa;
+      6. Serviço que localiza/retorna funcionários por FAIXA SALARIAL;
+      7. Serviço que localiza/retorna funcionários por STATUS;
+      8. Serviço para incluir um novo funcionário (caso o funcionário já exista, apenas atualizar);
+      9. Serviço para excluir um funcionário pelo número do CPF;
+
+2) Criar o front-end para consumo dos serviços citados acima.
+
+REQUISITOS:
+1. Use a tecnologia que você tem mais habilidade (temos preferência por Node, mas poderá ser utilizado qualquer linguagem desde que explicado a preferência);
+2. As APIs deverão seguir o modelo RESTFul com formato JSON;
+3. Faça testes unitários, suite de testes bem organizados (atenção especial neste item);
+4. Use Git e tente fazer commits pequenos e bem descritos;
+5. Faça pelo menos um README explicando como fazer o setup, uma explicação da solução proposta, o mínimo de documentação para outro desenvolvedor entender seu código;
+6. Siga o que considera boas práticas de programação;
+7. A API deverá ser documentada através de Swagger ou equivalente;
+8. Após concluir o teste suba em um REPOSITÓRIO PRIVADO, conceda acesso ao usuário x.
+
+Boa sorte!
