@@ -1,11 +1,11 @@
 import Employee from '../models/Employee'
-import { EntityRepository, Repository, Between } from 'typeorm'
+import { EntityRepository, Repository, Between, ILike } from 'typeorm'
 
 @EntityRepository(Employee)
 class EmployeesRepository extends Repository<Employee> {
   public async findByNome(name: string): Promise<Employee[] | null> {
     const findEmployee = await this.find({
-      where: { nome: name },
+      nome: ILike(`%${name}%`),
     })
 
     return findEmployee || null

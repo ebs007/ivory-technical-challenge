@@ -12,8 +12,8 @@ const employeesRouter = Router()
 
 employeesRouter.use(ensureAuthenticated)
 
-employeesRouter.get('/nome/:nome', async (request, response) => {
-  const nome = request.params.nome
+employeesRouter.post('/nome', async (request, response) => {
+  const nome = request.body.nome
   const employeeRepository = getCustomRepository(EmployeesRepository)
   const employee = await employeeRepository.findByNome(nome)
 
