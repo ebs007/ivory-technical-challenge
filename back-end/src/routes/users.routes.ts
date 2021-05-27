@@ -12,6 +12,61 @@ import AppError from '../errors/AppError'
 const usersRouter = Router()
 const upload = multer(uploadConfig)
 
+/**
+ * @swagger
+ *
+ * /users:
+ *  post:
+ *      tags:
+ *         - "Cadastrar novo usuário"
+ *      summary: "Cadastrar novo usuário"
+ *      description: "Cadastrar novo usuário"
+ *      operationId: "novoUsuario"
+ *      requestBody:
+ *         required: true
+ *         content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   name:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   password:
+ *                     type: string
+ *      responses:
+ *        "200":
+ *          description: "Retorna o usuário criado."
+ *          content:
+ *              application/json:
+ *                schema:
+ *                  type: "array"
+ *                  items:
+ *                      type: object
+ *                      properties:
+ *                         name:
+ *                           type: string
+ *                           example: Erick
+ *                         email:
+ *                           type: string
+ *                           example: erick@challenge.com.br
+ *                         id:
+ *                           type: string
+ *                           example: ca2f9f27-dfd5-4f61-ad3d-c3403b589ada
+ *                         created_at:
+ *                           type: string
+ *                           example: 2021-05-25T01:20:51.687Z
+ *                         updated_at:
+ *                           type: string
+ *                           example: 2021-05-25T01:20:51.687Z
+ *        "401":
+ *          description: "JWT token is missing"
+ *        "400":
+ *          description: "Email address already used."
+ *      security:
+ *        - bearerAuth: []
+ */
 usersRouter.post('/', async (request, response) => {
   const { name, email, password } = request.body
 

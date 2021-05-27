@@ -161,7 +161,7 @@ const Menu: React.FC = () => {
               <svg className="bi me-2" width="16" height="16">
                 <use xlinkHref="#grid" />
               </svg>
-              Data de Cadastro
+              Localizar por Data de Cadastro
             </Link>
           </li>
           <li>

@@ -1,9 +1,0 @@
-{
-  "scripts": {
-    "start": "node swagger/index.js"
-  },
-  "dependencies": {
-    "express": "^4.17.1",
-    "swagger-ui-dist": "^3.49.0"
-  }
-}

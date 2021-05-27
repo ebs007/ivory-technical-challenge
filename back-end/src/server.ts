@@ -1,4 +1,5 @@
 import 'reflect-metadata'
+import path from 'path'
 
 import express, { Request, Response, NextFunction } from 'express'
 import 'express-async-errors'
@@ -9,7 +10,23 @@ import uploadConfig from './config/upload'
 
 import AppError from './errors/AppError'
 
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
+
 import './database'
+
+const options = {
+  definition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Ivory Technical Challenge',
+      version: '1.0.0',
+    },
+  },
+  apis: [path.join(__dirname, '/routes/*.routes.ts')],
+}
+
+const specs = swaggerJSDoc(options)
 
 const app = express()
 
@@ -33,6 +50,8 @@ app.use(
     })
   },
 )
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 app.listen(3333, () => {
   console.log('Server started on port 3333!')
