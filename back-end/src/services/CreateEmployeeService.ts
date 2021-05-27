@@ -3,6 +3,8 @@ import { getCustomRepository } from 'typeorm'
 import Employee from '../models/Employee'
 import EmployeeRepository from '../repositories/EmployeeRepository'
 
+import AppError from '../errors/AppError'
+
 interface Request {
   dataCad: Date
   cargo: string

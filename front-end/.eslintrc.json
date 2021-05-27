@@ -65,7 +65,8 @@
           "some": ["nesting", "id"]
         }
       }
-    ]
+    ],
+    "eqeqeq": "off"
   },
   "settings": {
     "import/resolver": {

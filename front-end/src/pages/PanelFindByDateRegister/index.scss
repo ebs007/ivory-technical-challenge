@@ -1,0 +1,13 @@
+.panel-date-register {
+  display: flex;
+  flex-direction: row;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100%;
+  width: 100%;
+
+  & .list {
+    overflow-y: scroll;
+    width: 80%;
+  }
+}

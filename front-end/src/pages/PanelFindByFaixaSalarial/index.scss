@@ -1,0 +1,23 @@
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+@import 'bootstrap/scss/mixins/_breakpoints.scss';
+
+.panel-faixa-salarial {
+  display: flex;
+  flex-direction: row;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 100%;
+  width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    & {
+      flex-direction: column;
+    }
+  }
+
+  & .list {
+    overflow-y: scroll;
+    width: 80%;
+  }
+}

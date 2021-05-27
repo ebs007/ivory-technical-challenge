@@ -1,17 +1,14 @@
-import React, {
-  Fragment,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  FormEvent,
-} from 'react'
+import React, { useContext, useState, FormEvent } from 'react'
+
+import { Link } from 'react-router-dom'
 
 import api from '../../services/api'
 
 import Context from '../../Context'
 
-import './login.scss'
+import bootstrapLogo from '../../assets/img/svg/bootstrap-logo.svg'
+
+import './index.scss'
 
 interface Response {
   user: Record<string, unknown>
@@ -19,8 +16,7 @@ interface Response {
 }
 
 const Login: React.FC = () => {
-  const { signIn, setSignIn, setToken } = useContext(Context)
-  console.log(signIn)
+  const { setSignIn, setToken, setUserName } = useContext(Context)
 
   const [email, setEmail] = useState<string | null>(null)
   const [password, setPassword] = useState<string | null>(null)
@@ -36,14 +32,14 @@ const Login: React.FC = () => {
         password,
       })
       .then(response => {
-        console.log(response.data.token)
         setSignIn(true)
+        setUserName(response.data.user.name)
         setToken(response.data.token)
       })
       .catch(function (error) {
-        console.log(error.request)
-        // const responseError = JSON.parse(error.request.response)
-        // alert(responseError.error)
+        const responseError = JSON.parse(error.request.response)
+
+        alert(responseError.message)
       })
   }
 
@@ -52,7 +48,14 @@ const Login: React.FC = () => {
       <div className="login">
         <main className="form-signin">
           <form onSubmit={handleSubmit}>
-            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+            <img
+              className="mb-4"
+              src={bootstrapLogo}
+              alt=""
+              width="72"
+              height="57"
+            />
+            <h1 className="h3 mb-3 fw-normal">Por favor faça o login</h1>
 
             <div className="form-floating">
               <input
@@ -64,7 +67,7 @@ const Login: React.FC = () => {
                   setEmail(e.target.value)
                 }}
               />
-              <label htmlFor="floatingInput">Email address</label>
+              <label htmlFor="floatingInput">E-mail</label>
             </div>
 
             <div className="form-floating">
@@ -77,12 +80,21 @@ const Login: React.FC = () => {
                   setPassword(e.target.value)
                 }}
               />
-              <label htmlFor="floatingPassword">Password</label>
+              <label htmlFor="floatingPassword">Senha</label>
             </div>
 
-            <button className="w-100 btn btn-lg btn-primary" type="submit">
-              Sign in
+            <button
+              className="w-100 btn btn-lg btn-primary mt-3 mb-5"
+              type="submit"
+            >
+              Entrar
             </button>
+            <p>
+              <Link to="/cadastra-se">Cadastra-se</Link>
+            </p>
+            <p className="mt-5 mb-3 text-muted">
+              &copy; {new Date().getUTCFullYear()}
+            </p>
           </form>
         </main>
       </div>

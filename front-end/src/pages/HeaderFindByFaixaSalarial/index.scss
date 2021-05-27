@@ -1,0 +1,21 @@
+.header-faixa-salarial {
+  & h2 {
+    width: 38%;
+  }
+  & form {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    width: 55%;
+
+    & p {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    & input {
+      width: 100%;
+    }
+  }
+}

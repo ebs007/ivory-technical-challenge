@@ -7,27 +7,32 @@ import UpdateUserAvatarService from '../services/UpdateUserAvatarService'
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
 
+import AppError from '../errors/AppError'
+
 const usersRouter = Router()
 const upload = multer(uploadConfig)
 
 usersRouter.post('/', async (request, response) => {
-  try {
-    const { name, email, password } = request.body
+  const { name, email, password } = request.body
 
-    const createUser = new CreateUserService()
-
-    const user = await createUser.execute({
-      name,
-      email,
-      password,
-    })
-
-    delete user.password
-
-    return response.json(user)
-  } catch (err) {
-    return response.status(400).json({ error: err.message })
+  if (!name || !email || !password) {
+    throw new AppError(
+      'Campos Nome, e-mail e senha devem ser preenchidos.',
+      400,
+    )
   }
+
+  const createUser = new CreateUserService()
+
+  const user = await createUser.execute({
+    name,
+    email,
+    password,
+  })
+
+  delete user.password
+
+  return response.json(user)
 })
 
 usersRouter.patch(
@@ -35,20 +40,16 @@ usersRouter.patch(
   ensureAuthenticated,
   upload.single('avatar'),
   async (request, response) => {
-    try {
-      const updateUserAvatar = new UpdateUserAvatarService()
+    const updateUserAvatar = new UpdateUserAvatarService()
 
-      const user = await updateUserAvatar.execute({
-        user_id: request.user.id,
-        avatarFileName: request.file.filename,
-      })
+    const user = await updateUserAvatar.execute({
+      user_id: request.user.id,
+      avatarFileName: request.file.filename,
+    })
 
-      delete user.password
+    delete user.password
 
-      return response.json(user)
-    } catch (error) {
-      return response.status(400).json({ error: error.message })
-    }
+    return response.json(user)
   },
 )
 

@@ -12,6 +12,12 @@ const employeesRouter = Router()
 
 employeesRouter.use(ensureAuthenticated)
 
+employeesRouter.get('/', async (request, response) => {
+  const employeeRepository = getCustomRepository(EmployeesRepository)
+  const employee = await employeeRepository.find()
+
+  return response.json(employee)
+})
 employeesRouter.post('/nome', async (request, response) => {
   const nome = request.body.nome
   const employeeRepository = getCustomRepository(EmployeesRepository)
@@ -19,21 +25,21 @@ employeesRouter.post('/nome', async (request, response) => {
 
   return response.json(employee)
 })
-employeesRouter.get('/cpf/:cpf', async (request, response) => {
-  const cpf = parseInt(request.params.cpf)
+employeesRouter.post('/cpf', async (request, response) => {
+  const cpf = parseInt(request.body.cpf)
   const employeeRepository = getCustomRepository(EmployeesRepository)
   const employee = await employeeRepository.findByCpf(cpf)
 
   return response.json(employee)
 })
-employeesRouter.get('/cargo/:cargo', async (request, response) => {
-  const cargo = request.params.cargo
+employeesRouter.post('/cargo', async (request, response) => {
+  const cargo = request.body.cargo
   const employeeRepository = getCustomRepository(EmployeesRepository)
   const employee = await employeeRepository.findByCargo(cargo)
 
   return response.json(employee)
 })
-employeesRouter.get('/data_de_cadastro/:date', async (request, response) => {
+employeesRouter.post('/data_de_cadastro', async (request, response) => {
   function appendLeadingZeroes(n) {
     if (n <= 9) {
       return '0' + n
@@ -41,7 +47,7 @@ employeesRouter.get('/data_de_cadastro/:date', async (request, response) => {
     return n
   }
 
-  const dateObj = new Date(request.params.date)
+  const dateObj = new Date(request.body.date)
 
   var date = appendLeadingZeroes(dateObj.getUTCDate()),
     month = appendLeadingZeroes(dateObj.getUTCMonth() + 1),
@@ -53,36 +59,26 @@ employeesRouter.get('/data_de_cadastro/:date', async (request, response) => {
 
   return response.json(employee)
 })
-employeesRouter.get('/uf/:uf', async (request, response) => {
-  const uf = request.params.uf
+employeesRouter.post('/uf', async (request, response) => {
+  const uf = request.body.uf
   const employeeRepository = getCustomRepository(EmployeesRepository)
   const employee = await employeeRepository.findByUfNascimento(uf)
 
   return response.json(employee)
 })
-employeesRouter.get('/cargo/:cargo', async (request, response) => {
-  const cargo = request.params.cargo
+employeesRouter.post('/faixa_salarial', async (request, response) => {
+  const faixaInicial = parseInt(request.body.faixaInicial)
+  const faixaFinal = parseInt(request.body.faixaFinal)
   const employeeRepository = getCustomRepository(EmployeesRepository)
-  const employee = await employeeRepository.findByCargo(cargo)
+  const employee = await employeeRepository.findByFaixaSalarial(
+    faixaInicial,
+    faixaFinal,
+  )
 
   return response.json(employee)
 })
-employeesRouter.get(
-  '/faixa_salarial/:faixaInicial/:faixaFinal',
-  async (request, response) => {
-    const faixaInicial = parseInt(request.params.faixaInicial)
-    const faixaFinal = parseInt(request.params.faixaFinal)
-    const employeeRepository = getCustomRepository(EmployeesRepository)
-    const employee = await employeeRepository.findByFaixaSalarial(
-      faixaInicial,
-      faixaFinal,
-    )
-
-    return response.json(employee)
-  },
-)
-employeesRouter.get('/status/:status', async (request, response) => {
-  const status = request.params.status
+employeesRouter.post('/status', async (request, response) => {
+  const status = request.body.status
   const employeeRepository = getCustomRepository(EmployeesRepository)
   const employee = await employeeRepository.findByStatus(status)
 
@@ -118,9 +114,9 @@ employeesRouter.post('/', async (request, response) => {
     return response.status(400).json({ error: err.message })
   }
 })
-employeesRouter.delete('/', async (request, response) => {
+employeesRouter.delete('/:cpf', async (request, response) => {
   try {
-    const { cpf } = request.body
+    const { cpf } = request.params
 
     const removeEmployeeService = new RemoveEmployeeService()
 

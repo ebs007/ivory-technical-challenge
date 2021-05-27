@@ -2,8 +2,10 @@ import { getCustomRepository } from 'typeorm'
 
 import EmployeeRepository from '../repositories/EmployeeRepository'
 
+import AppError from '../errors/AppError'
+
 interface Request {
-  cpf: number
+  cpf: string
 }
 
 class RemoveEmployeeService {

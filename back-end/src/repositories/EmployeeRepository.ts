@@ -1,5 +1,14 @@
 import Employee from '../models/Employee'
-import { EntityRepository, Repository, Between, ILike } from 'typeorm'
+import {
+  EntityRepository,
+  Repository,
+  Between,
+  ILike,
+  getRepository,
+  getManager,
+} from 'typeorm'
+
+import circularJSON from 'circular-json'
 
 @EntityRepository(Employee)
 class EmployeesRepository extends Repository<Employee> {
@@ -19,7 +28,7 @@ class EmployeesRepository extends Repository<Employee> {
   }
   public async findByCargo(cargo: string): Promise<Employee[] | null> {
     const findEmployee = await this.find({
-      where: { cargo: cargo },
+      cargo: ILike(`%${cargo}%`),
     })
 
     return findEmployee || null
@@ -33,12 +42,10 @@ class EmployeesRepository extends Repository<Employee> {
 
     return findEmployee || null
   }
-  public async findByUfNascimento(
-    uf: string,
-  ): Promise<[Employee[], number] | null> {
-    const findEmployee = await this.findAndCount({
-      where: { ufnasc: uf },
-    })
+  public async findByUfNascimento(uf: string): Promise<any | null> {
+    const findEmployee = await getManager().query(
+      `select ufnasc as Uf,count(*) from employees e where e.ufnasc ilike '%${uf}%' group by e.ufnasc`,
+    )
 
     return findEmployee || null
   }
@@ -54,7 +61,7 @@ class EmployeesRepository extends Repository<Employee> {
   }
   public async findByStatus(status: string): Promise<Employee[] | null> {
     const findEmployee = await this.find({
-      where: { status: status },
+      status: ILike(`%${status}%`),
     })
 
     return findEmployee || null

@@ -1,0 +1,28 @@
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+@import 'bootstrap/scss/mixins/_breakpoints.scss';
+
+.list {
+  overflow-y: scroll;
+
+  @include media-breakpoint-up(xs) {
+    & {
+      width: 100%;
+    }
+  }
+  @include media-breakpoint-up(sm) {
+    & {
+      width: 100%;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    & {
+      width: 100%;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    & {
+      width: 80%;
+    }
+  }
+}
