@@ -8,8 +8,6 @@ import {
   getManager,
 } from 'typeorm'
 
-import circularJSON from 'circular-json'
-
 @EntityRepository(Employee)
 class EmployeesRepository extends Repository<Employee> {
   public async findByNome(name: string): Promise<Employee[] | null> {
