@@ -40,7 +40,6 @@ const Header: React.FC = () => {
           },
         )
         .then(response => {
-          console.log(response.data)
           setList(response.data)
         })
         .catch(function (error) {
