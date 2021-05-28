@@ -85,6 +85,9 @@ const EmployeeForm: React.FC = () => {
               setCpf(e.target.value)
             }}
           />
+          <div id="dataDeCadastroHelp" className="form-text">
+            CPF no formato XXXXXXXXXXX (sem ponto e sem traço)
+          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="cargo" className="form-label">
