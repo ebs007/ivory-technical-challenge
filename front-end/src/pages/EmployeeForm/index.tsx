@@ -44,7 +44,7 @@ const EmployeeForm: React.FC = () => {
         },
       )
       .then(response => {
-        if (response.statusText == 'OK') {
+        if (response.statusText == 'Created') {
           alert('Cadastrado com sucesso.')
         }
       })

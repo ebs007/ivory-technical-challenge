@@ -1,12 +1,13 @@
 import { Router } from 'express'
 import { getCustomRepository } from 'typeorm'
-import { parseISO } from 'date-fns'
 
 import EmployeesRepository from '../repositories/EmployeeRepository'
 import CreateEmployeeService from '../services/CreateEmployeeService'
 import RemoveEmployeeService from '../services/RemoveEmployeeService'
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated'
+
+import AppError from '../errors/AppError'
 
 const employeesRouter = Router()
 
@@ -696,6 +697,13 @@ employeesRouter.post('/', async (request, response) => {
       salario,
       status,
     } = request.body
+
+    if (!cpf || !dataDeCadastro) {
+      throw new AppError(
+        'Campos CPF e Data de Cadastro devem ser preenchidos.',
+        400,
+      )
+    }
 
     const createEmployeeService = new CreateEmployeeService()
 
