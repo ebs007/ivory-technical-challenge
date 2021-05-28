@@ -14,6 +14,14 @@ Use alguma ferramente(Ex.:DBeaver) para se conectar ao Postgres, em seguida crie
 ivory_technical_challenge
 ```
 
+## Importe os dados
+
+Importe os dados do arquivo no estilo .csv no arquivo para a base de dados ivory_technical_challenge:
+
+```
+./Base de Dados - Funcionários.txt
+```
+
 ## Instale o Yarn
 
 ```
