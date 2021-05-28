@@ -40,7 +40,7 @@ Para rodar as migrations:
 yarn typeorm migration:run
 ```
 
-## Rodar a API
+# Rodar a API
 
 Para rodar a API:
 
@@ -76,7 +76,7 @@ Para acessar o sistema, acesse:
 http://localhost:3000
 ```
 
-## Cadastra-se um Usuário
+## Cadastre um Usuário
 
 Para entrar no sistema, clique no link "Cadastra-se" e cadastra-se um usuário, fornecendo email, nome e senha.
 
