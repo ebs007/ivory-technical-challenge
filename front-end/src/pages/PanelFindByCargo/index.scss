@@ -1,3 +1,7 @@
+@import 'bootstrap/scss/_functions.scss';
+@import 'bootstrap/scss/_variables.scss';
+@import 'bootstrap/scss/mixins/_breakpoints.scss';
+
 .panel-cargo {
   display: flex;
   flex-direction: row;
@@ -6,8 +10,104 @@
   height: 100%;
   width: 100%;
 
+  @include media-breakpoint-up(xs) {
+    & {
+      flex-direction: column;
+    }
+  }
+  @include media-breakpoint-up(sm) {
+    & {
+      flex-direction: column;
+    }
+  }
+  @include media-breakpoint-up(md) {
+    & {
+      flex-direction: column;
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    & {
+      flex-direction: row;
+    }
+  }
+
+  & .desktop-menu {
+    @include media-breakpoint-down(xs) {
+      & {
+        display: none;
+      }
+    }
+    @include media-breakpoint-between(xs, sm) {
+      & {
+        display: none;
+      }
+    }
+    @include media-breakpoint-between(sm, md) {
+      & {
+        display: none;
+      }
+    }
+    @include media-breakpoint-between(md, lg) {
+      & {
+        display: none;
+      }
+    }
+    @include media-breakpoint-between(lg, xl) {
+      & {
+        display: flex;
+      }
+    }
+    @include media-breakpoint-between(xl, xxl) {
+      & {
+        display: flex;
+      }
+    }
+    @include media-breakpoint-up(xxl) {
+      & {
+        display: flex;
+      }
+    }
+  }
+
+  & .mobile-menu {
+    @include media-breakpoint-down(xs) {
+      & {
+        display: flex;
+      }
+    }
+    @include media-breakpoint-between(xs, sm) {
+      & {
+        display: flex;
+      }
+    }
+    @include media-breakpoint-between(sm, md) {
+      & {
+        display: flex;
+      }
+    }
+    @include media-breakpoint-between(md, lg) {
+      & {
+        display: flex;
+      }
+    }
+    @include media-breakpoint-between(lg, xl) {
+      & {
+        display: none;
+      }
+    }
+    @include media-breakpoint-between(xl, xxl) {
+      & {
+        display: none;
+      }
+    }
+    @include media-breakpoint-up(xxl) {
+      & {
+        display: none;
+      }
+    }
+  }
+
   & .list {
     overflow-y: scroll;
-    width: 80%;
   }
 }

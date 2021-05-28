@@ -11,10 +11,7 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <div
-        className=" flex-column flex-shrink-0 p-3 text-white bg-dark menu"
-        style={{ width: '20%' }}
-      >
+      <div className="col-12 col-lg-4 col-xl-3 col-xxl-3 flex-column flex-shrink-0 p-3 text-white bg-dark desktop-menu">
         <svg xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
           <symbol id="bootstrap" viewBox="0 0 118 94">
             <title>Bootstrap</title>
@@ -95,7 +92,7 @@ const Menu: React.FC = () => {
 
         <a
           href="/"
-          className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+          className=" d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         >
           <svg className="bi me-2" width="40" height="32">
             <use xlinkHref="#bootstrap" />

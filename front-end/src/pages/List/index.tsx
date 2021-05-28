@@ -45,6 +45,13 @@ const List: React.FC = () => {
                     {employee.nome && employee.nome}
                   </strong>
                   <small>{employee.cargo && employee.cargo}</small>
+                  <small>{employee.datacad && employee.datacad}</small>
+                </div>
+                <div className="col-10 mb-1 small">
+                  Salário: {employee.salario && employee.salario}
+                </div>
+                <div className="col-10 mb-1 small">
+                  UF: {employee.ufnasc && employee.ufnasc}
                 </div>
                 <div className="col-10 mb-1 small">
                   {employee.status && employee.status}

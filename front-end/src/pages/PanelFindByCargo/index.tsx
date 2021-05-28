@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 
 import Context from '../../Context'
 
+import MobileMenu from '../MobileMenu'
 import Menu from '../Menu'
 import HeaderFindByCargo from '../HeaderFindByCargo'
 import List from '../List'
@@ -14,13 +15,9 @@ const PanelFindByCargo: React.FC = () => {
   return (
     <>
       <div className="container-fluid panel-cargo">
-        <div
-          className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
-          style={{ width: '20%' }}
-        >
-          <Menu />
-        </div>
-        <div className="d-flex flex-column align-items-stretch flex-shrink-0 bg-white list">
+        <MobileMenu />
+        <Menu />
+        <div className="col-12 col-lg-8 col-xl-9 col-xxl-9 flex-column align-items-stretch flex-shrink-0 bg-white list">
           <HeaderFindByCargo />
           <List />
         </div>
